@@ -19,6 +19,18 @@ app.post('/api/products', async (req, res) => {
   }
 });
 
+app.get('/api/products', async (req, res) => {
+  try {
+    const products = await Product.find({});
+    res.status(200).json(products);
+
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+
+  }
+});
+
+
 mongoose.connect("mongodb+srv://admin:s1cBw30noRAWR09F@backenddb.8bf80.mongodb.net/Node-API?retryWrites=true&w=majority&appName=BackendDB")
   .then(() => {
     console.log('Connected to the database!');
